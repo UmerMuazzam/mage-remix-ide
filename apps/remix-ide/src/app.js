@@ -21,6 +21,7 @@ import {LinkLibraries, DeployLibraries, OpenZeppelinProxy} from '@remix-project/
 import {CodeParser} from './app/plugins/parser/code-parser'
 import {SolidityScript} from './app/plugins/solidity-script'
 
+
 import {WalkthroughService} from './walkthroughService'
 
 import {OffsetToLineColumnConverter, CompilerMetadata, CompilerArtefacts, FetchAndCompile, CompilerImports, GistHandler} from '@remix-project/core-plugin'
@@ -31,7 +32,7 @@ import {StoragePlugin} from './app/plugins/storage'
 import {Layout} from './app/panels/layout'
 import {NotificationPlugin} from './app/plugins/notification'
 import {Blockchain} from './blockchain/blockchain'
-import {MergeVMProvider, LondonVMProvider, BerlinVMProvider, ShanghaiVMProvider, CancunVMProvider} from './app/providers/vm-provider'
+import {MergeVMProvider, LondonVMProvider, BerlinVMProvider, ShanghaiVMProvider, CancunVMProvider, CreataChainVMProvider} from './app/providers/vm-provider'
 import {MainnetForkVMProvider} from './app/providers/mainnet-vm-fork-provider'
 import {SepoliaForkVMProvider} from './app/providers/sepolia-vm-fork-provider'
 import {GoerliForkVMProvider} from './app/providers/goerli-vm-fork-provider'
@@ -78,6 +79,8 @@ const Config = require('./config')
 const FileManager = require('./app/files/fileManager')
 import FileProvider from "./app/files/fileProvider"
 import { appPlatformTypes } from '@remix-ui/app'
+import { UmerPlugin } from './app/tabs/Umer'
+import { AlphaPlugin } from './app/tabs/alpha'
 const DGitProvider = require('./app/files/dgitProvider')
 const WorkspaceFileProvider = require('./app/files/workspaceFileProvider')
 
@@ -248,6 +251,8 @@ class AppComponent {
 
     // ----------------- import content service ------------------------
     const contentImport = new CompilerImports()
+    const umer = new UmerPlugin()
+    const alpha = new AlphaPlugin()
 
     const blockchain = new Blockchain(Registry.getInstance().get('config').api)
 
@@ -272,6 +277,7 @@ class AppComponent {
     const vmProviderGoerliFork = new GoerliForkVMProvider(blockchain)
     const vmProviderShanghai = new ShanghaiVMProvider(blockchain)
     const vmProviderCancun = new CancunVMProvider(blockchain)
+    const vmProviderCreata = new CreataChainVMProvider(blockchain)
     const vmProviderMerge = new MergeVMProvider(blockchain)
     const vmProviderBerlin = new BerlinVMProvider(blockchain)
     const vmProviderLondon = new LondonVMProvider(blockchain)
@@ -346,6 +352,7 @@ class AppComponent {
       storagePlugin,
       vmProviderShanghai,
       vmProviderCancun,
+      vmProviderCreata,
       vmProviderMerge,
       vmProviderBerlin,
       vmProviderLondon,
@@ -360,6 +367,8 @@ class AppComponent {
       environmentExplorer,  
       this.walkthroughService,
       search,
+      umer,
+      alpha,
       solidityumlgen,
       compilationDetails,
       vyperCompilationDetails,
@@ -371,7 +380,7 @@ class AppComponent {
       git,
       pluginStateLogger,
       matomo,
-      templateSelection
+      templateSelection,
     ])
 
     //---- fs plugin
@@ -514,7 +523,7 @@ class AppComponent {
     ])
     await this.appManager.activatePlugin(['settings'])
 
-    await this.appManager.activatePlugin(['walkthrough', 'storage', 'search', 'compileAndRun', 'recorder', 'dgitApi', 'dgit'])
+    await this.appManager.activatePlugin(['walkthrough', 'storage', 'search', 'imUmer','alpha', 'compileAndRun', 'recorder', 'dgitApi', 'dgit'])
     await this.appManager.activatePlugin(['solidity-script', 'remix-templates'])
 
     if (isElectron()){

@@ -128,6 +128,7 @@ export const browserInitialState: BrowserState = {
 }
 
 export const browserReducer = (state = browserInitialState, action: Actions) => {
+  
   switch (action.type) {
   case 'SET_CURRENT_WORKSPACE': {
     const payload = action.payload

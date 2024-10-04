@@ -50,7 +50,8 @@
   }
 
   .remixui_icon .selected-light {
-    filter: invert(0) grayscale(1);
+    /* filter: invert(0) grayscale(1); */
+     filter: invert(42%) sepia(78%) saturate(7472%) hue-rotate(218deg) brightness(90%) contrast(94%);
   }
 
   .remixui_icon svg {

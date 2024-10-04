@@ -11,6 +11,7 @@ import { platformContext } from '@remix-ui/app'
 export const SearchTab = (props) => {
   const plugin = props.plugin
   const platform = useContext(platformContext)
+  console.log(platform)
 
   return (
     <>

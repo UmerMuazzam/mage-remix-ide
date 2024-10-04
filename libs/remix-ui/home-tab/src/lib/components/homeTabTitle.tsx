@@ -100,26 +100,19 @@ function HomeTabTitle() {
     <div className="px-2 pb-2 pt-2 d-flex flex-column border-bottom" id="hTTitleSection">
       <div className="d-flex py-2 justify-content-between">
         <div className="d-flex justify-content-start">
-          <span className="h-80 text-uppercase" style={{ fontSize: 'xx-large', fontFamily: 'Noah, sans-serif' }}>
+          <span className="h-80 text-uppercase" style={{fontSize: 'xx-large', fontFamily: 'Noah, sans-serif', color: '#013eb7'}}>
             Remix
           </span>
           <div className="ml-2 d-flex">
             <div onClick={() => playRemi()}>
-              <img className="" src="assets/img/guitarRemiCroped.webp" style={{ height: '3rem' }} alt=""></img>
+              <img className="" src="assets/img/guitarRemiCroped.webp" style={{height: '3rem'}} alt=""></img>
             </div>
             <audio id="remiAudio" muted={false} src="assets/audio/remiGuitar-single-power-chord-A-minor.mp3" ref={remiAudioEl}></audio>
           </div>
         </div>
         <span className="d-flex flex-nowrap align-self-end">
           {iconButtons.map((button, index) => (
-            <CustomTooltip
-              key={index}
-              placement={button.placement}
-              tooltipId="overlay-tooltip"
-              tooltipClasses="text-nowrap"
-              tooltipText={button.textToolip}
-              tooltipTextClasses="border bg-light text-dark p-1 pr-3"
-            >
+            <CustomTooltip key={index} placement={button.placement} tooltipId="overlay-tooltip" tooltipClasses="text-nowrap" tooltipText={button.textToolip} tooltipTextClasses="border bg-light text-dark p-1 pr-3">
               <button
                 key={index}
                 onClick={() => {
@@ -132,7 +125,7 @@ function HomeTabTitle() {
           ))}
         </span>
       </div>
-      <b className="py-1 text-dark" style={{ fontStyle: 'italic' }}>
+      <b className="py-1 text-dark" style={{fontStyle: 'italic'}}>
         <FormattedMessage id="home.nativeIDE" />
       </b>
       <div className="pb-1" id="hTGeneralLinks">
@@ -147,24 +140,12 @@ function HomeTabTitle() {
         >
           <FormattedMessage id="home.documentation" />
         </a> */}
-        <a
-          className="pl-2 remixui_home_text"
-          onClick={() => _paq.push(['trackEvent', 'hometab', 'header', 'remixDesktop'])}
-          target="__blank"
-          href="https://github.com/remix-project-org/remix-desktop-insiders"
-        >
+        <a className="pl-2 remixui_home_text" onClick={() => _paq.push(['trackEvent', 'hometab', 'header', 'remixDesktop'])} target="__blank" href="https://github.com/remix-project-org/remix-desktop-insiders">
           <FormattedMessage id="home.remixDesktop" />
         </a>
       </div>
       <div className="d-flex pb-1 align-items-center">
-        <input
-          ref={searchInputRef}
-          type="text"
-          className="border form-control border-right-0"
-          id="homeTabSearchInput"
-          placeholder={intl.formatMessage({ id: 'home.searchDocumentation' })}
-          data-id="terminalInputSearchHome"
-        />
+        <input ref={searchInputRef} type="text" className="border form-control border-right-0" id="homeTabSearchInput" placeholder={intl.formatMessage({id: 'home.searchDocumentation'})} data-id="terminalInputSearchHome" />
         <button
           className="form-control border d-flex align-items-center p-2 justify-content-center fas fa-search bg-light"
           onClick={(e) => {
@@ -172,7 +153,7 @@ function HomeTabTitle() {
             openLink()
           }}
           disabled={state.searchDisable}
-          style={{ width: '3rem' }}
+          style={{width: '3rem'}}
         ></button>
       </div>
     </div>

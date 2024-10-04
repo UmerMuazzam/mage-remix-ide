@@ -1,6 +1,19 @@
 export default async () => {
   return {
     // @ts-ignore
+    'creataChain/Context.sol': (await import('raw-loader!./creataChain/Context.sol')).default,
+    // @ts-ignore
+    'creataChain/ERC20.sol': (await import('raw-loader!./creataChain/ERC20.sol')).default,
+    // @ts-ignore
+    'creataChain/IERC20.sol': (await import('raw-loader!./creataChain/IERC20.sol')).default,
+    // @ts-ignore
+    'creataChain/IERC20Errors.sol': (await import('raw-loader!./creataChain/IERC20Errors.sol')).default,
+    // @ts-ignore
+    'creataChain/IERC20Metadata.sol': (await import('raw-loader!./creataChain/IERC20Metadata.sol')).default,
+    // @ts-ignore
+    'creataChain/SimpleERC20.sol': (await import('raw-loader!./creataChain/SimpleERC20.sol')).default,
+     
+    // @ts-ignore
     'contracts/1_Storage.sol': (await import('raw-loader!./contracts/1_Storage.sol')).default,
     // @ts-ignore
     'contracts/2_Owner.sol': (await import('raw-loader!./contracts/2_Owner.sol')).default,

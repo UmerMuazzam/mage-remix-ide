@@ -1249,6 +1249,7 @@ export function Workspace() {
           </div>
         </div>
       </div>
+      
       { selectedWorkspace && (
         <div className={`bg-light border-top ${selectedWorkspace.isGitRepo && currentBranch ? 'd-block' : 'd-none'}`} data-id="workspaceGitPanel">
           <div className="d-flex justify-content-between p-1">

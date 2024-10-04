@@ -8,6 +8,14 @@ const _paq = window._paq = window._paq || []
 
 //sol2uml dot files cannot work with css variables so hex values for colors are used
 const themes = [
+  {
+    name: 'Mage-dark', quality: 'dark', url: 'assets/css/themes/magnus-mage-dark.css', backgroundColor: '#222336', textColor: '#babbcc',
+    shapeColor: '#babbcc', fillColor: '#2a2c3f'
+  },
+  {
+    name: 'Mage-light', quality: 'light', url: 'assets/css/themes/magnus-mage-light.css', backgroundColor: '#eef1f6', textColor: '#3b445e',
+    shapeColor: '#343a40', fillColor: '#ffffff'
+  },
   { name: 'Dark', quality: 'dark', url: 'assets/css/themes/remix-dark_tvx1s2.css', backgroundColor: '#222336', textColor: '#babbcc',
     shapeColor: '#babbcc',fillColor: '#2a2c3f' },
   { name: 'Light', quality: 'light', url: 'assets/css/themes/remix-light_powaqg.css', backgroundColor: '#eef1f6', textColor: '#3b445e',

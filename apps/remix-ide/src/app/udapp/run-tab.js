@@ -131,6 +131,7 @@ export class RunTab extends ViewPlugin {
 
     const descriptions = {
       'vm-cancun': 'Deploy to the in-browser virtual machine running the Cancun fork.',
+      'vm-creata': 'Deploy to the in-browser virtual machine running the creata-chain Cancun fork.',
       'vm-shanghai': 'Deploy to the in-browser virtual machine running the Shanghai fork.',
       'vm-paris': 'Deploy to the in-browser virtual machine running the Paris fork.',
       'vm-london': 'Deploy to the in-browser virtual machine running the London fork.',
@@ -149,7 +150,8 @@ export class RunTab extends ViewPlugin {
       'injected-metamask-optimism': 'Deploy to Optimism through the Metamask browser extension.',
       'injected-metamask-arbitrum': 'Deploy to Arbitrum through the Metamask browser extension.',
       'injected-metamask-sepolia': 'Deploy to the Sepolia testnet through the Metamask browser extension.',
-      'injected-metamask-ephemery': 'Deploy to the Ephemery testnet through the Metamask browser extension.'
+      'injected-metamask-ephemery': 'Deploy to the Ephemery testnet through the Metamask browser extension.',
+      'injected-creata-chain': 'Deploy to the Creata chain through the Metamask browser extension.'
     }
 
     const logos = {
@@ -162,7 +164,8 @@ export class RunTab extends ViewPlugin {
       'injected-Trust Wallet': ['assets/img/trust-wallet.png'],
       'hardhat-provider': ['assets/img/hardhat.png'],
       'walletconnect': ['assets/img/Walletconnect-logo.png'],     
-      'foundry-provider': ['assets/img/foundry.png']
+      'foundry-provider': ['assets/img/foundry.png'],
+      'injected-creata-chain': ['assets/img/creataChain.svg']
     }
 
     const addProvider = async (position, name, displayName, isInjected, isVM, fork = '', dataId = '', title = '', forkedVM = false) => {
@@ -220,6 +223,14 @@ export class RunTab extends ViewPlugin {
             "symbol": "ETH",
             "decimals": 18
           })
+
+        await addCustomInjectedProvider(90, event, 'injected-creata-chain', 'Creata Chain - ' + event.detail.info.name, '0x2328', [' https://consensus.testnet.cvm.creatachain.com'],
+          {
+            "name": "CTA",
+            "symbol": "CTA",
+            "decimals": 18
+          })
+
         /*
         await addCustomInjectedProvider(9, event, 'SKALE Chaos Testnet', '0x50877ed6', ['https://staging-v3.skalenodes.com/v1/staging-fast-active-bellatrix'],
           {
@@ -234,6 +245,7 @@ export class RunTab extends ViewPlugin {
     // VM    
     const titleVM = 'Execution environment is local to Remix.  Data is only saved to browser memory and will vanish upon reload.'
     await addProvider(1, 'vm-cancun', 'Remix VM (Cancun)', false, true, 'cancun', 'settingsVMCancunMode', titleVM)
+    await addProvider(54, 'vm-creata', 'Creata VM (Cancun)', false, true, 'cancun', 'settingsVMCancunMode', titleVM)
     await addProvider(50, 'vm-shanghai', 'Remix VM (Shanghai)', false, true, 'shanghai', 'settingsVMShanghaiMode', titleVM)
     await addProvider(51, 'vm-paris', 'Remix VM (Paris)', false, true, 'paris', 'settingsVMParisMode', titleVM)
     await addProvider(52, 'vm-london', 'Remix VM (London)', false, true, 'london', 'settingsVMLondonMode', titleVM)

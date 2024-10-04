@@ -7,6 +7,7 @@ const fs = require('fs')
 const TerserPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const path = require('path')
+const { execSync } = require('child_process');
 
 const versionData = {
   version: version,
@@ -15,12 +16,20 @@ const versionData = {
 }
 
 const loadLocalSolJson = async () => {
-  //execute apps/remix-ide/ci/downloadsoljson.sh
-  console.log('loading local soljson')
-  const child = require('child_process').execSync('bash ' + __dirname + '/ci/downloadsoljson.sh', { encoding: 'utf8', cwd: process.cwd(), shell: true })
-  // show output
-  console.log(child)
-}
+  // Execute apps/remix-ide/ci/downloadsoljson.sh
+  console.log('loading local soljson');
+
+  // Construct the path using path.join for cross-platform compatibility
+  const scriptPath = path.join(__dirname, 'ci', 'downloadsoljson.sh');
+
+  try {
+    const child = execSync(`bash ${scriptPath}`, { encoding: 'utf8', cwd: process.cwd(), shell: true });
+    // Show output
+    console.log(child);
+  } catch (error) {
+    console.error('Error executing script:', error.message);
+  }
+};
 
 fs.writeFileSync(__dirname + '/src/assets/version.json', JSON.stringify(versionData))
 

@@ -1,5 +1,6 @@
 let parser: any
 self.onmessage = (e: MessageEvent) => {
+  console.log(e.data.url)
   const data: any = e.data
   switch (data.cmd) {
   case 'load':

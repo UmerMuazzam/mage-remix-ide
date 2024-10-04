@@ -131,3 +131,21 @@ export class CancunVMProvider extends BasicVMProvider {
     this.fork = 'cancun'
   }
 }
+
+export class CreataChainVMProvider extends BasicVMProvider {
+  constructor(blockchain) {
+    super(
+      {
+        name: 'vm-creata',
+        displayName: 'Creata VM (Lahore)',
+        kind: 'provider',
+        description: 'Creata VM (Lahore)',
+        methods: ['sendAsync', 'init'],
+        version: packageJson.version,
+      },
+      blockchain
+    )
+    this.blockchain = blockchain
+    this.fork = 'creata'
+  }
+}
